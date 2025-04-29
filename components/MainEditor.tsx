@@ -10,8 +10,8 @@ const MainEditor = () => {
 
   return (
     <div className="flex-1 overflow-hidden">
-      <div className="flex justify-between items-start">
-        <div className="flex gap-2 justify-between items-start">
+      <div className="flex justify-between items-start gap-8">
+        <div className="flex-1 flex gap-4 justify-between items-start">
             <VideoUpload />
             <VideoPreview />
         </div>
