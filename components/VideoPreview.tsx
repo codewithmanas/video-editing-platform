@@ -13,6 +13,7 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentTime, setMuted, setPlayingState, setVolume, VideoState } from "@/redux/slices/videoSlice";
+import { setPlayHeadPosition } from "@/redux/slices/timelineSlice";
 
 export default function VideoPreview() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,6 +52,7 @@ export default function VideoPreview() {
       if (videoRef.current) {
         const time = videoRef.current.currentTime;
         dispatch(setCurrentTime(time));
+        dispatch(setPlayHeadPosition(time));
       }
     };
 

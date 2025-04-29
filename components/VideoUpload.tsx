@@ -15,6 +15,7 @@ import {
   setVideoUploading,
   setVideoUploadProgress,
 } from "@/redux/slices/videoSlice";
+import { addClip } from "@/redux/slices/timelineSlice";
 
 const VideoUpload = () => {
   const [uploading, setUploading] = useState(false);
@@ -53,6 +54,17 @@ const VideoUpload = () => {
           dispatch(setVideoSource(videoUrl));
           dispatch(setVideoTitle(file.name));
           dispatch(setVideoDuration(duration));
+
+
+          // Add the video as a clip to the timeline
+          dispatch(addClip({
+            startTime: 0,
+            endTime: duration,
+            sourceStartTime: 0,
+            sourceEndTime: duration,
+            type: 'video',
+            source: videoUrl
+          }));                   
 
           toast("Upload complete");
         }

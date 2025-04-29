@@ -1,18 +1,29 @@
 "use client";
 
-import { Download, PauseCircle, PlayCircle, Save, Settings, Upload } from "lucide-react";
+import {
+  Download,
+  PauseCircle,
+  PlayCircle,
+  Save,
+  Settings,
+  Upload,
+} from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 const Navbar = () => {
   const [projectName, setProjectName] = useState("Untitled Project");
   const [isPlaying, setIsPlaying] = useState(false);
 
-
   const togglePlayback = () => {
-      setIsPlaying(!isPlaying);
-
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -32,39 +43,43 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button 
-            size="sm" 
-            variant="ghost" 
+          <Button
+            size="sm"
+            variant="ghost"
             className="text-muted-foreground hover:text-foreground cursor-pointer"
             onClick={togglePlayback}
           >
             {isPlaying ? <PauseCircle size={18} /> : <PlayCircle size={18} />}
           </Button>
-          
+
+
+
           <div className="h-6 w-px bg-border mx-2" />
-          
+
           <Button size="sm" variant="outline" className="gap-1 cursor-pointer">
             <Upload size={16} />
             <span className="hidden sm:inline">Import</span>
           </Button>
-          
+
           <Button size="sm" variant="outline" className="gap-1 cursor-pointer">
             <Save size={16} />
             <span className="hidden sm:inline">Save Project</span>
           </Button>
-          
-          <Button 
-            size="sm" 
-            variant="default" 
+
+          <Button
+            size="sm"
+            variant="default"
             className="gap-1 cursor-pointer"
             // onClick={handleExport}
           >
             <Download size={16} />
             <span className="hidden sm:inline">Export</span>
           </Button>
-          
+
+          <DarkModeToggle />
+
           <div className="h-6 w-px bg-border mx-2" />
-          
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button size="sm" variant="ghost" className="cursor-pointer">
@@ -77,9 +92,7 @@ const Navbar = () => {
               <DropdownMenuItem>Project Settings</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          
         </div>
-
       </div>
     </div>
   );

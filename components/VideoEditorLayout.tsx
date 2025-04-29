@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { VideoState } from "@/redux/slices/videoSlice";
 import VideoPreview from "./VideoPreview";
 import Navbar from "./Navbar";
+import TimelineView from "./TimelineView";
 
 const VideoEditorLayout = () => {
   const videoSource = useSelector(
@@ -17,15 +18,16 @@ const VideoEditorLayout = () => {
     <div className="overflow-hidden h-full flex flex-col">
         <Navbar />
 
-          <div className="h-full flex min-h-[70%] w-full">
+          <div className="h-full flex min-h-[60%] w-full">
                 <div className="h-full flex flex-col">
                   {videoSource ? <VideoPreview /> : <VideoUpload />}
                 </div>
           </div>
 
 
-          <div className="h-full min-h-[30%] border-t border-2 border-border mt-6">timeline</div>
-
+          <div className="h-full min-h-[40%] mt-6">
+              <TimelineView />
+          </div>
 
     </div>
   );
