@@ -73,7 +73,7 @@ const TimelineView = () => {
   const timelineWidth = duration * zoom * 100;
 
   return (
-    <div className="h-full flex flex-col bg-card border-t border-border">
+    <div className="flex flex-col bg-card border-t border-border">
       <div className="flex items-center justify-between p-2 border-b border-border">
         <h3 className="text-sm font-medium">Timeline</h3>
 

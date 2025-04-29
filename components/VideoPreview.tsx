@@ -94,7 +94,7 @@ export default function VideoPreview() {
     };
 
   return (
-    <div className="h-full flex flex-col bg-black/90">
+    <div className="flex-1 flex flex-col bg-black/90">
       <div className="flex-1 relative flex items-center justify-center h-64">
         {source && (
           <>
@@ -109,8 +109,8 @@ export default function VideoPreview() {
         )}
       </div>
 
-      {source && (
-        <div className="p-3 bg-card border-t border-border">
+
+        <div className="w-full p-3 bg-card border-t border-border">
           <div className="flex flex-col space-y-2">
             <Slider
               value={[currentTime]}
@@ -183,7 +183,7 @@ export default function VideoPreview() {
             </div>
           </div>
         </div>
-      )}
+      
     </div>
   );
 }

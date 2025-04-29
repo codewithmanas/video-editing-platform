@@ -109,7 +109,7 @@ const VideoUpload = () => {
   });
 
   return (
-    <div className="h-full flex flex-col items-center justify-center p-6 ">
+    <div className="flex flex-col items-center justify-center p-6 ">
       <div
         {...getRootProps()}
         className={cn(
