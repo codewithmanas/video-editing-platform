@@ -17,13 +17,31 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { useDispatch, useSelector } from "react-redux";
+import { VideoState } from "@/redux/slices/videoSlice";
+import { toast } from "sonner";
+import { startExport } from "@/redux/slices/exportSlice";
 
 const Navbar = () => {
   const [projectName, setProjectName] = useState("Untitled Project");
   const [isPlaying, setIsPlaying] = useState(false);
 
+
+  const dispatch = useDispatch();
+  const videoSource = useSelector((state: { video: VideoState }) => state.video.source);
+
   const togglePlayback = () => {
     setIsPlaying(!isPlaying);
+  };
+
+  const handleExport = () => {
+    if (!videoSource) {
+      toast("No video to export");
+      return;
+    }
+    
+    dispatch(startExport());
+    toast("Export started");
   };
 
   return (
@@ -70,7 +88,7 @@ const Navbar = () => {
             size="sm"
             variant="default"
             className="gap-1 cursor-pointer"
-            // onClick={handleExport}
+            onClick={handleExport}
           >
             <Download size={16} />
             <span className="hidden sm:inline">Export</span>

@@ -5,8 +5,12 @@ import VideoPreview from "./VideoPreview";
 import VideoUpload from "./VideoUpload";
 import TimelineView from "./TimelineView";
 import EditingOptions from "./EditingOptions";
+import { useSelector } from "react-redux";
+import { ExportState } from "@/redux/slices/exportSlice";
+import ExportDialog from "./ExportDialog";
 
 const MainEditor = () => {
+  const isExporting = useSelector((state: { export: ExportState }) => state.export.isExporting);
 
   return (
     <div className="flex-1 overflow-hidden">
@@ -19,6 +23,8 @@ const MainEditor = () => {
 
       </div>
         <TimelineView />
+
+        {isExporting && <ExportDialog />}
     </div>
   );
 };
