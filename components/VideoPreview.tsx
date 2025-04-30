@@ -20,6 +20,7 @@ import {
   VideoState,
 } from "@/redux/slices/videoSlice";
 import { setPlayHeadPosition } from "@/redux/slices/timelineSlice";
+import { TextState } from "@/redux/slices/textSlice";
 
 export default function VideoPreview() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -27,6 +28,8 @@ export default function VideoPreview() {
 
   const { source, isPlaying, currentTime, volume, muted, duration } =
     useSelector((state: { video: VideoState }) => state.video);
+
+  const { overlays } = useSelector((state: { text: TextState }) => state.text);
 
   // Handle playback state changes
   useEffect(() => {
@@ -116,6 +119,23 @@ export default function VideoPreview() {
             />
           </>
         )}
+
+        <div className="absolute top-[50%] left-[50%] transform -translate-1/2 h-12 w-[60%]">
+          {overlays.length > 0 &&
+            overlays.map((overlay, index) => (
+              <div
+                key={index}
+                style={{
+                  position: "absolute",
+                  top: `${overlay.position.y}`,
+                  left: `${overlay.position.x}`,
+                  color: "black",
+                }}
+              >
+                {overlay.content}
+              </div>
+            ))}
+        </div>
       </div>
 
       <div className="w-full p-3 bg-card border-t border-border">
