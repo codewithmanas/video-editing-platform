@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { ZoomIn, ZoomOut } from "lucide-react";
 import { Slider } from "./ui/slider";
 import {
-    moveClip,
+  moveClip,
   setPlayHeadPosition,
   setSelectedClip,
   setZoom,
@@ -60,13 +60,15 @@ const TimelineView = () => {
   };
 
   const handleClipResize = (id: string, newStart: number, newEnd: number) => {
-    dispatch(updateClip({
-      id,
-      changes: {
-        startTime: newStart,
-        endTime: newEnd
-      }
-    }));
+    dispatch(
+      updateClip({
+        id,
+        changes: {
+          startTime: newStart,
+          endTime: newEnd,
+        },
+      })
+    );
   };
 
   // Calculate timeline width based on duration and zoom
@@ -112,8 +114,6 @@ const TimelineView = () => {
           className="relative min-h-full"
           style={{ width: `${timelineWidth}px` }}
         >
-          {/* <TimelineRuler duration={duration} zoom={zoom} /> */}
-
           <div
             ref={timelineRef}
             className="relative h-full"
@@ -146,12 +146,12 @@ const TimelineView = () => {
                       isDragging={draggingClipId === clip.id}
                       onDragStart={() => handleDragStart(clip.id)}
                       onDragEnd={handleDragEnd}
-                        onMove={(newStartTime) =>
-                          handleClipMove(clip.id, newStartTime)
-                        }
-                        onResize={(newStart, newEnd) =>
-                          handleClipResize(clip.id, newStart, newEnd)
-                        }
+                      onMove={(newStartTime) =>
+                        handleClipMove(clip.id, newStartTime)
+                      }
+                      onResize={(newStart, newEnd) =>
+                        handleClipResize(clip.id, newStart, newEnd)
+                      }
                       onClick={() => dispatch(setSelectedClip(clip.id))}
                     />
                   ))}
@@ -162,27 +162,6 @@ const TimelineView = () => {
                 <div className="absolute left-2 top-1 text-xs font-medium text-muted-foreground">
                   Text
                 </div>
-
-                {/* {clips
-                  .filter((clip) => clip.type === "text")
-                  .map((clip) => (
-                    <TimelineClip
-                      key={clip.id}
-                      clip={clip}
-                      duration={duration}
-                      isSelected={selectedClipId === clip.id}
-                      isDragging={draggingClipId === clip.id}
-                      onDragStart={() => handleDragStart(clip.id)}
-                      onDragEnd={handleDragEnd}
-                      onMove={(newStartTime) =>
-                        handleClipMove(clip.id, newStartTime)
-                      }
-                      onResize={(newStart, newEnd) =>
-                        handleClipResize(clip.id, newStart, newEnd)
-                      }
-                      onClick={() => dispatch(setSelectedClip(clip.id))}
-                    />
-                  ))} */}
               </div>
 
               {/* Image track */}
@@ -190,27 +169,6 @@ const TimelineView = () => {
                 <div className="absolute left-2 top-1 text-xs font-medium text-muted-foreground">
                   Image
                 </div>
-
-                {/* {clips
-                  .filter((clip) => clip.type === "image")
-                  .map((clip) => (
-                    <TimelineClip
-                      key={clip.id}
-                      clip={clip}
-                      duration={duration}
-                      isSelected={selectedClipId === clip.id}
-                      isDragging={draggingClipId === clip.id}
-                      onDragStart={() => handleDragStart(clip.id)}
-                      onDragEnd={handleDragEnd}
-                      onMove={(newStartTime) =>
-                        handleClipMove(clip.id, newStartTime)
-                      }
-                      onResize={(newStart, newEnd) =>
-                        handleClipResize(clip.id, newStart, newEnd)
-                      }
-                      onClick={() => dispatch(setSelectedClip(clip.id))}
-                    />
-                  ))} */}
               </div>
             </div>
           </div>
