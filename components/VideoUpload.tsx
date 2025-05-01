@@ -55,16 +55,17 @@ const VideoUpload = () => {
           dispatch(setVideoTitle(file.name));
           dispatch(setVideoDuration(duration));
 
-
           // Add the video as a clip to the timeline
-          dispatch(addClip({
-            startTime: 0,
-            endTime: duration,
-            sourceStartTime: 0,
-            sourceEndTime: duration,
-            type: 'video',
-            source: videoUrl
-          }));                   
+          dispatch(
+            addClip({
+              startTime: 0,
+              endTime: duration,
+              sourceStartTime: 0,
+              sourceEndTime: duration,
+              type: "video",
+              source: videoUrl,
+            })
+          );
 
           toast("Upload complete");
         }

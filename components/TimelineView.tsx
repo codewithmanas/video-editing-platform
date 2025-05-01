@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentTime, VideoState } from "@/redux/slices/videoSlice";
 import TimelineClip from "./TimelineClip";
+import TimelineRuler from "./TimelineRuler";
 
 const TimelineView = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -114,6 +115,9 @@ const TimelineView = () => {
           className="relative min-h-full"
           style={{ width: `${timelineWidth}px` }}
         >
+
+          <TimelineRuler duration={duration} zoom={zoom} />
+
           <div
             ref={timelineRef}
             className="relative h-full"
@@ -162,6 +166,27 @@ const TimelineView = () => {
                 <div className="absolute left-2 top-1 text-xs font-medium text-muted-foreground">
                   Text
                 </div>
+
+                {clips
+                  .filter((clip) => clip.type === "text")
+                  .map((clip) => (
+                    <TimelineClip
+                      key={clip.id}
+                      clip={clip}
+                      duration={duration}
+                      isSelected={selectedClipId === clip.id}
+                      isDragging={draggingClipId === clip.id}
+                      onDragStart={() => handleDragStart(clip.id)}
+                      onDragEnd={handleDragEnd}
+                      onMove={(newStartTime) =>
+                        handleClipMove(clip.id, newStartTime)
+                      }
+                      onResize={(newStart, newEnd) =>
+                        handleClipResize(clip.id, newStart, newEnd)
+                      }
+                      onClick={() => dispatch(setSelectedClip(clip.id))}
+                    />
+                  ))}
               </div>
 
               {/* Image track */}
@@ -169,6 +194,27 @@ const TimelineView = () => {
                 <div className="absolute left-2 top-1 text-xs font-medium text-muted-foreground">
                   Image
                 </div>
+
+                {clips
+                  .filter((clip) => clip.type === "image")
+                  .map((clip) => (
+                    <TimelineClip
+                      key={clip.id}
+                      clip={clip}
+                      duration={duration}
+                      isSelected={selectedClipId === clip.id}
+                      isDragging={draggingClipId === clip.id}
+                      onDragStart={() => handleDragStart(clip.id)}
+                      onDragEnd={handleDragEnd}
+                      onMove={(newStartTime) =>
+                        handleClipMove(clip.id, newStartTime)
+                      }
+                      onResize={(newStart, newEnd) =>
+                        handleClipResize(clip.id, newStart, newEnd)
+                      }
+                      onClick={() => dispatch(setSelectedClip(clip.id))}
+                    />
+                  ))}
               </div>
             </div>
           </div>
