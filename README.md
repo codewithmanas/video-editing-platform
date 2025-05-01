@@ -12,6 +12,10 @@ This project is a frontend-only implementation of a **Web-Based Video Editing Pl
 
 [Click Here:](https://video-editing-platform-1f02x61zf-codewithmanas-projects.vercel.app/)
 
+## Demo Video
+
+[Demo Video Link:](https://drive.google.com/file/d/1DVrOfDVfLfErbGOVvNJyIjeR1MD2Kdue/view?usp=sharing)
+
 ## Tech Stack
 
 | Technology     | Purpose                             |
